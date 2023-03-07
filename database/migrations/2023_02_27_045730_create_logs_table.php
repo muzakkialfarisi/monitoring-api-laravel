@@ -16,20 +16,20 @@ class CreateLogsTable extends Migration
         if (!Schema::hasTable('logs')) {
             Schema::create('logs', function (Blueprint $table) {
                 $table->bigIncrements('id');
-                $table->string('application_name');
-                $table->string('application_feature');
-                $table->string('url');
-                $table->string('request_header');
-                $table->string('request_payload');
-                $table->string('status_code_factual');
-                $table->string('status_code_actual');
-                $table->boolean('status_code_validation');
-                $table->string('response_body_factual');
-                $table->string('response_body_actual');
-                $table->boolean('response_body_validation');
-                $table->string('response_time');
-                $table->string('response_time_accumulation');
-                $table->boolean('response_time_validation');
+                $table->string('application_name')->nullable();
+                $table->string('application_feature')->nullable();
+                $table->string('url')->nullable();
+                $table->string('request_header')->nullable();
+                $table->string('request_payload')->nullable();
+                $table->integer('status_code_factual')->nullable();
+                $table->integer('status_code_actual')->nullable();
+                $table->boolean('status_code_validation')->nullable();
+                $table->string('response_body_factual')->nullable();
+                $table->string('response_body_actual')->nullable();
+                $table->boolean('response_body_validation')->nullable();
+                $table->float('response_time')->nullable();
+                $table->float('response_time_accumulation')->nullable();
+                $table->boolean('response_time_validation')->nullable();
                 $table->timestamps(DB::raw(0));
                 $table->dateTime('deleted_at', DB::raw(0))->nullable();
             });

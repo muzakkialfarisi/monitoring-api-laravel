@@ -5,6 +5,8 @@ return [
     'main_dealer_base_url' => env('MAIN_DEALER_BASE_URL'),
     'main_dealer_apps_token' => env('MAIN_DEALER_APPS_TOKEN'),
 
+    'token' => env('TOKEN'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
