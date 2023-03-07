@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Console\Commands\be_console\profile;
+namespace App\Console\Commands\motorkux\be_apps\banner;
 
 use Illuminate\Console\Command;
 
-class get_profile extends Command
+class get_banner_slider extends Command
 {
     /**
      * The name and signature of the console command.

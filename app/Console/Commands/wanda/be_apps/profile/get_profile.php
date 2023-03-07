@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands\be_apps\profile;
+namespace App\Console\Commands\wanda\be_apps\profile;
 
 use Illuminate\Console\Command;
 use GuzzleHttp\Client;
@@ -8,7 +8,7 @@ use GuzzleHttp\TransferStats;
 
 class get_profile extends Command
 {
-    protected $signature = 'be_apps:profile_get_profile';
+    protected $signature = 'wahana:apps_profile_get_profile';
     protected $description = 'Command description';
 
     public function __construct()
@@ -33,7 +33,6 @@ class get_profile extends Command
                 $request_time = new self();
                 $response = $client->get(
                         $main_dealer_base_url[$i] . $path, [
-                        'allow_redirects' => false,
                         'headers' => [
                             'Authorization' => 'Bearer ' . $main_dealer_apps_token[$i],
                         ],
@@ -43,13 +42,27 @@ class get_profile extends Command
                         }
                     ]);
     
-                $this->info($main_dealer_base_url[$i]);
-                $this->info($path);
-                $this->info($response->getStatusCode());
-                $this->info($response->getBody());
-                $this->info($request_time->getTotaltime());
+                if($response){
+                    $response_headers = '{';
+                    foreach ($response->getHeaders() as $name => $values) {
+                        $response_headers .= '"' . $name . '":"' . implode(', ', $values) . '", ';
+                    }
+                    $response_headers .= '}';
+    
+                    $this->info('base URL = ' . $main_dealer_base_url[$i]);
+                    $this->info('');
+                    $this->info('path = ' . $path);
+                    $this->info('');
+                    $this->info('status code = ' . $response->getStatusCode());
+                    $this->info('');
+                    $this->info('response header = ' . $response_headers);
+                    $this->info('');
+                    $this->info('response body = ' . $response->getBody());
+                    $this->info('');
+                    $this->info('response time = ' . $request_time->getTotaltime());
+                }
             }
-            catch(Exception $e) {
+            catch(ClientErrorResponseException $exception) {
                 $this->info('error');
             }
         }

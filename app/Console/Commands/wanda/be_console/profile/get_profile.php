@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Console\Commands\be_apps\catalogue;
+namespace App\Console\Commands\wanda\be_console\profile;
 
 use Illuminate\Console\Command;
 
-class get_catalogue extends Command
+class get_profile extends Command
 {
     /**
      * The name and signature of the console command.
