@@ -12,6 +12,7 @@ class LogModel extends Model
     protected $table = 'logs';
     protected $dateFormat = "Y-m-d H:i:s";
     protected $fillable = [
+        'main_dealer_id',
         'application_name',
         'application_feature',
         'url',

@@ -8,21 +8,16 @@ class LogService
 {
     public function __construct() 
     {
-        $this->LogRepository = new LogRepository();
+        $this->log_repository = new LogRepository();
     }
 
-    public function hola() 
+    public function save(array $param): bool 
     {
-        return true;
-    }
-
-    public function save(array $param): array 
-    {
-        $save = $this->gasStation
-            ->set_id($param["id"])
-            ->set_application_name($param["application_name"])
+        $data = $this->log_repository
+            // ->set_id($param["id"] ?? null)
+            ->set_key($param["key"])
+            ->set_path($param["path"])
             ->set_application_feature($param["application_feature"])
-            ->set_url($param["url"])
             ->set_request_header($param["request_header"])
             ->set_request_payload($param["request_payload"])
             ->set_status_code_factual($param["status_code_factual"])
@@ -36,12 +31,20 @@ class LogService
             ->set_response_time_validation($param["response_time_validation"])
             ->save();
 
-        if (!$save)
-            return $this->errorMessage("Failed To Saved.");
+        if (!$data)
+            return false;
 
-        return [
-            "status" => 1,
-            "msg" => "Data Successfuly Saved."
-        ];
+        return true;
+    }
+
+    public function getAccumulatedTime(array $param)
+    {
+        $data = $this->log_repository
+            ->set_key($param["key"])
+            ->set_path($param["path"])
+            ->set_application_feature($param["application_feature"])
+            ->getAccumulatedTime();
+
+        return $data;
     }
 }

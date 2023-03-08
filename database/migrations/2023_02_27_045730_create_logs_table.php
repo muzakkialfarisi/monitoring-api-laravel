@@ -16,6 +16,7 @@ class CreateLogsTable extends Migration
         if (!Schema::hasTable('logs')) {
             Schema::create('logs', function (Blueprint $table) {
                 $table->bigIncrements('id');
+                $table->integer('main_dealer_id')->nullable();
                 $table->string('application_name')->nullable();
                 $table->string('application_feature')->nullable();
                 $table->string('url')->nullable();

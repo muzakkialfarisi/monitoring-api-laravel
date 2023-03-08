@@ -4,6 +4,7 @@ return [
     'main_dealer_id' => env('MAIN_DEALER_ID'),
     'main_dealer_base_url' => env('MAIN_DEALER_BASE_URL'),
     'main_dealer_apps_token' => env('MAIN_DEALER_APPS_TOKEN'),
+    'main_dealer_apps_name' => env('MAIN_DEALER_APPS_NAME'),
 
     'token' => env('TOKEN'),
 
